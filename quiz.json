@@ -1,0 +1,45 @@
+{
+  "name": "Python quiz",
+  "passing_score": 5,
+  "questions": [{
+    "type": "open", 
+    "question": "What data type doesn't exist in Python?",
+    "answer": "Number"
+  },
+  {
+    "type": "open", 
+    "question": "What determines the grouping of statements in Python?",
+    "answer": "Indentation"
+  },
+  {
+    "type": "single", 
+    "question": "How was Python started?",
+    "answer": "As a hobby project",
+    "options": ["A college final", "As a hobby project", "Work assignment", "Dare"]
+  },
+  {
+    "type": "single", 
+    "question": "What makes Python easier to learn compared to other languages?",
+    "answer": "It is closest to the English language",
+    "options": ["It has AI help you write code", "It automatically guesses and completes statements", "It will work with major mistakes in the code", "It is closest to the English language"]
+  },
+  {
+    "type": "open", 
+    "question": "What can be used to remember the last result in Python?",
+    "answer": "Underscore"
+  },
+  {
+    "type": "single", 
+    "question": "Is Python a top 5 used language?",
+    "answer": "Yes",
+    "options": ["Yes", "No", "It was, until 2019"]
+  },
+  {
+    "type": "single", 
+    "question": "What is Python's packet manager called?",
+    "answer": "pip",
+    "options": ["pip", "meep", "glip", "fleep"]
+  }
+  ]
+  
+}
