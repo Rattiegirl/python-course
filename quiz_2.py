@@ -17,12 +17,12 @@ test1 = load_quiz("quiz.json")
 tests = []
 tests.append(test1)
 
-def print_question(question):
-  print(question["question"])
+# def print_question(question):
+#   print(question["question"])
 
-def see_answers():
-  for i, question in enumerate(test1):
-    print(question["question"], question["answer"], sep=" ")
+# def see_answers():
+#   for i, question in enumerate(test1):
+#     print(question["question"], question["answer"], sep=" ")
 
 def correct_text():
    print("You are absolutely right!")
@@ -30,24 +30,42 @@ def correct_text():
 def incorrect_text():
    print("Unfotunately that is not correct.")
   
+def process_question(question):
+  if (question["type"] == "single"):
+    print(question["question"])
+    show_options(question["options"])
+    answer = input()
 
-def check_answer(question):
-  answer = input()
+    return question["options"][int(answer) - 1] == question["answer"]
 
-  if question["type"] == "open":
-    if question["answer"] == answer:
-      correct_text()
-      return True
-    else:
-      incorrect_text()
-      return False
-  elif question["type"] == "single":
-    if question["options"][int(answer) - 1] == question["answer"]:
-      correct_text()
-      return True
-    else:
-      incorrect_text()
-      return False
+  elif (question["type"] == "open"):
+    print(question["question"])
+    answer = input()
+
+    return question["answer"] == answer
+
+  else:
+    print("unknown type,", question["type"])
+    return False
+
+# def check_answer(question):
+#   answer = input()
+
+#   if question["type"] == "open":
+#     if question["answer"] == answer:
+#       correct_text()
+#       return True
+#     else:
+#       incorrect_text()
+#       return False
+#   elif question["type"] == "single":
+#     if question["options"][int(answer) - 1] == question["answer"]:
+#       correct_text()
+#       return True
+#     else:
+#       incorrect_text()
+#       return False
+
 
 
 print("Hello! I see you came to take a quiz")
@@ -58,11 +76,16 @@ def test(current_test):
   questions = current_test["questions"]
   while (len(questions) > index):
     question = questions[index]
-    print_question(question)
-    if (question["type"] == "single"):
-      show_options(question["options"])
-    if check_answer(question):
+    if process_question(question):
+      correct_text()
       score += 1
+    else:
+      incorrect_text()
+    # print_question(question)
+    # if (question["type"] == "single"):
+    #   show_options(question["options"])
+    # if check_answer(question):
+    #   score += 1
     index += 1
   print("You scored", score, "point(s) out of", len(questions), sep=" ")
   if (score >= current_test["passing_score"]):

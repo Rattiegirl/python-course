@@ -1,0 +1,8 @@
+[
+  ["An abstraction inside a program that can hold a value. It has associated data storage that represents one value at a time, but it can be a list or other collection that in turn contains multiple values.", "variable"],
+  ["The physical parts of a computer ", "hardware"],
+  ["Any part of a computer that can take information from the outside world and input it into the computer","input"],
+  ["An occurrence; things that happen in the computer ","event"]
+
+
+]
