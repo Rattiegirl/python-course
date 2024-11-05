@@ -14,3 +14,7 @@ for element in list1:
 
 list2 = [element for element in list1 if element != 2]
 print(list2)
+
+print(random.sample(range(10), 3))
+
+print(random.choice(["open", "single"]))

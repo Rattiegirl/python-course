@@ -1,10 +1,9 @@
-def load_questions_array(file_name):
-  #return big_element
-  return []
+import random
+from lib.files import load_questions_array
 
 def take_some_indexes(big_element, amount):
-  #take 5 random indexes of the big element
-  return [1,2,5,6,3]
+  random_nums = random.sample(range(len(big_element)), amount)
+  return random_nums
 
 def create_open_question(question, answer):
   return {
@@ -14,11 +13,12 @@ def create_open_question(question, answer):
   }
 
 def create_single_question(question, answer, random_answers):
+  random.shuffle(random_answers + answer)
   return {
     "type": "single", 
     "question": question,
     "answer": answer,
-    "options": []
+    "options": [random.shuffle(random_answers + answer)]
     #shuffle random answers + actual answer
   }
 
@@ -31,6 +31,12 @@ def create_file(file_name, quiz_name, created_questions, passing_score):
   return True
 
 def convert_to_test(file_name, quiz_name, passing_score):
+  big_element = load_questions_array(file_name)
+  indexes = take_some_indexes(big_element, 5)
+  for index in indexes:
+    type = "open"
+    question = create_open_question(big_element[index][0], big_element[index][1])
+    print(question)
 # take big element of file_name (like loadquiz)
 # take 5 random indexes of the big element
 #for each index
@@ -42,3 +48,10 @@ def convert_to_test(file_name, quiz_name, passing_score):
     #append to questions
 #create new file
 
+# big_element = load_questions_array("answers.json")
+
+# print(take_some_indexes(big_element, 5))
+
+# print(random.choice(["open", "single"]))
+
+convert_to_test("answers.json", "Prog Mog", 4)

@@ -1,8 +1,70 @@
 [
-  ["An abstraction inside a program that can hold a value. It has associated data storage that represents one value at a time, but it can be a list or other collection that in turn contains multiple values.", "variable"],
+  [
+    "An abstraction inside a program that can hold a value. It has associated data storage that represents one value at a time, but it can be a list or other collection that in turn contains multiple values.",
+    "variable"
+  ],
   ["The physical parts of a computer ", "hardware"],
-  ["Any part of a computer that can take information from the outside world and input it into the computer","input"],
-  ["An occurrence; things that happen in the computer ","event"]
-
-
+  [
+    "Any part of a computer that can take information from the outside world and input it into the computer",
+    "input"
+  ],
+  ["An occurrence; things that happen in the computer ", "event"],
+  [
+    "A programmable device that stores, retrieves, and processes data; an electronic machine or device that performs processes, calculations, and operations based on instructions provided by a software program ",
+    "Computer"
+  ],
+  [
+    "When you observe similarities and patterns within problems",
+    "pattern recognition"
+  ],
+  [
+    "Parts of a computer that can output information to the outside world",
+    "output"
+  ],
+  [
+    "Low-level software that interacts directly with the computer hardware (e.g., Windows, MacOS, Linux) ",
+    "system software"
+  ],
+  [
+    "Long-term memory that computers use to store data files or other more permanent pieces of information that a user would expect to be able to access consistently ",
+    "storage"
+  ],
+  [
+    "When you develop a step-by-step plan or the rules to follow to solve a problem",
+    "algorithmic thinking"
+  ],
+  [
+    "Set of instructions or commands that tell the computer what to do",
+    "software"
+  ],
+  [
+    "Part of the computer that processes data and allows the computer to “think”. Sometimes referred to as a “computer chip”",
+    "CPU (Central Processing Unit)"
+  ],
+  [
+    "Higher-level software usually specialized to do a particular task (e.g., Minecraft, Word, banking website) ",
+    "application software"
+  ],
+  ["How a computer stores data", "memory"],
+  [
+    "When you identify what defines the patterns you see, focus on the important information and derive general rules and concepts that can be applied in other areas (carving out the relevant from the irrelevant)",
+    "abstraction"
+  ],
+  ["A finite set of instructions that accomplish a specific task", "algorithm"],
+  [
+    "The ability to break a larger problem down into smaller parts",
+    "decomposition"
+  ],
+  [
+    "Short-term memory that computers use to cache temporary data that they can access quickly; data that gets constantly deleted or overwritten",
+    "RAM (Random Access Memory)"
+  ],
+  [
+    "Part of the code that handles what happens for a specific event; they run the code inside them whenever the event they are listening to is triggered",
+    "event handler"
+  ],
+  [
+    "Any object in a game that has properties and behaviors (meaning it can move or do something)",
+    "sprite"
+  ]
 ]
