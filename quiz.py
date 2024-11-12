@@ -1,72 +1,97 @@
+import json
 
-class Question:
-  def __init__(self, type, text, answer, options = None):
-    self.type = type
-    self.text = text 
-    self.answer = answer
-    self.options = options
-
-test1 = []
-# questions = []
-test1.append(Question("open", "What is the capital of Brazil?", "Brasilia"))  
-test1.append(Question("open", "How many legs does a chicken have?", "Two"))  
-test1.append(Question("single", "What animal can survive being thrown into space?", "Water bear", ["Penguin", "Microbe", "Water bear", "Bear"]))  
-
-test2 = []
-test2.append(Question("open", "What bug can walk on water?", "Water strider"))  
-test2.append(Question("single", "Which food is not a vegetable?", "Pomegranate", ["Asparagus", "Broccoli", "Pomegranate", "Bell peppers"]))  
-
+def load_quiz(filename):
+    """Загружает вопросы из файла JSON."""
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            questions = json.load(f)
+        return questions
+    except FileNotFoundError:
+        print(f"Файл {filename} не найден.")
+        return []
+    except json.JSONDecodeError:
+        print(f"Ошибка декодирования JSON в файле {filename}.")
+        return []
+    
+test1 = load_quiz("created_quizzes/quiz-1.json")
 tests = []
 tests.append(test1)
-tests.append(test2)
 
-current_test = test1
+# def print_question(question):
+#   print(question["question"])
 
-def print_question(question):
-  print(question.text)
-
-def see_answers():
-  for i, question in enumerate(test1):
-    print(question.text, question.answer, sep=" ")
-
-score = 0
+# def see_answers():
+#   for i, question in enumerate(test1):
+#     print(question["question"], question["answer"], sep=" ")
 
 def correct_text():
-   global score
-   score += 1
    print("You are absolutely right!")
 
 def incorrect_text():
    print("Unfotunately that is not correct.")
   
+def process_question(question):
+  if (question["type"] == "single"):
+    print(question["question"])
+    show_options(question["options"])
+    answer = input()
 
-def check_answer(question):
-  global score
-  answer = input()
+    return question["options"][int(answer) - 1] == question["answer"]
 
-  if question.type == "open":
-    if question.answer == answer:
-      correct_text()
-    else:
-      incorrect_text()
-  elif question.type == "single":
-    if question.options[int(answer) - 1] == question.answer:
-      correct_text()
-    else:
-      incorrect_text()
+  elif (question["type"] == "open"):
+    print(question["question"])
+    answer = input()
+
+    return question["answer"] == answer
+
+  else:
+    print("unknown type,", question["type"])
+    return False
+
+# def check_answer(question):
+#   answer = input()
+
+#   if question["type"] == "open":
+#     if question["answer"] == answer:
+#       correct_text()
+#       return True
+#     else:
+#       incorrect_text()
+#       return False
+#   elif question["type"] == "single":
+#     if question["options"][int(answer) - 1] == question["answer"]:
+#       correct_text()
+#       return True
+#     else:
+#       incorrect_text()
+#       return False
+
 
 
 print("Hello! I see you came to take a quiz")
-def test():
+def test(current_test):
+  print("You are doing the", current_test["name"], "!")
   index = 0
-  while (len(current_test) > index):
-    question = current_test[index]
-    print_question(question)
-    if (question.type == "single"):
-      show_options(question.options)
-    check_answer(question)
+  score = 0
+  questions = current_test["questions"]
+  while (len(questions) > index):
+    question = questions[index]
+    if process_question(question):
+      correct_text()
+      score += 1
+    else:
+      incorrect_text()
+    # print_question(question)
+    # if (question["type"] == "single"):
+    #   show_options(question["options"])
+    # if check_answer(question):
+    #   score += 1
     index += 1
-  print("You scored", score, "point(s) out of", len(current_test), sep=" ")
+  print("You scored", score, "point(s) out of", len(questions), sep=" ")
+  if (score >= current_test["passing_score"]):
+    print("You passed the test!")
+  else:
+    print("You failed the test!")
   score = 0
 
 def show_options(options):
@@ -80,8 +105,7 @@ while (True):
   if (action == 1):
     index = 0 
     while (len(tests) > index):
-      current_test = tests[index]
-      test()
+      test(tests[index])
       index += 1
     print("Very good job! Unfortunately we don't have anymore for you yet, so goodbye")
     break

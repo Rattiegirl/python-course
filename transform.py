@@ -14,11 +14,13 @@ def create_open_question(question, answer):
   }
 
 def create_single_question(question, answer, random_answers):
+  options = random_answers + [answer]
+  random.shuffle(options)
   return {
     "type": "single", 
     "question": question,
     "answer": answer,
-    "options": [random.shuffle(random_answers + [answer])]
+    "options": options
     #shuffle random answers + actual answer
   }
 
@@ -53,7 +55,7 @@ def convert_to_test(file_name, quiz_name, passing_score, target_file):
       random_answers = find_random_answers(big_element, 3, index)
       question = create_single_question(big_element[index][0], big_element[index][1], random_answers)
     questions.append(question)
-    print(question)
+    # print(question)
   create_file(target_file, quiz_name, questions, passing_score)
 
   
@@ -74,4 +76,4 @@ def convert_to_test(file_name, quiz_name, passing_score, target_file):
 
 # print(random.choice(["open", "single"]))
 
-convert_to_test("answers.json", "Prog Mog", 4, "quiz-1.json")
+convert_to_test("input/answers.json", "Prog Mog", 4, "created_quizzes/quiz-1.json")
