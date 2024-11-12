@@ -18,3 +18,5 @@ print(list2)
 print(random.sample(range(10), 3))
 
 print(random.choice(["open", "single"]))
+
+print(list(range(10)))

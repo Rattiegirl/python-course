@@ -13,7 +13,7 @@ def load_quiz(filename):
         print(f"Ошибка декодирования JSON в файле {filename}.")
         return []
     
-test1 = load_quiz("quiz.json")
+test1 = load_quiz("quiz-1.json")
 tests = []
 tests.append(test1)
 
