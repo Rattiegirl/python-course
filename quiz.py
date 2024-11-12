@@ -1,4 +1,5 @@
 import json
+import sys
 
 def load_quiz(filename):
     """Загружает вопросы из файла JSON."""
@@ -13,7 +14,7 @@ def load_quiz(filename):
         print(f"Ошибка декодирования JSON в файле {filename}.")
         return []
     
-test1 = load_quiz("created_quizzes/quiz-1.json")
+test1 = load_quiz(sys.argv[1])
 tests = []
 tests.append(test1)
 

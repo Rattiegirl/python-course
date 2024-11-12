@@ -1,6 +1,7 @@
 import random
 import json
 from lib.files import load_questions_array
+import sys
 
 def take_some_indexes(big_element, amount):
   random_nums = random.sample(range(len(big_element)), amount)
@@ -75,5 +76,6 @@ def convert_to_test(file_name, quiz_name, passing_score, target_file):
 # print(take_some_indexes(big_element, 5))
 
 # print(random.choice(["open", "single"]))
-
-convert_to_test("input/answers.json", "Prog Mog", 4, "created_quizzes/quiz-1.json")
+input_file = sys.argv[1]
+output_file = sys.argv[2]
+convert_to_test(input_file, "Prog Mog", 4, output_file)
