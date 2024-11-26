@@ -93,11 +93,16 @@ def test(current_test):
     print("You passed the test!")
   else:
     print("You failed the test!")
+  save_results(current_test["name"], score)
   score = 0
 
 def show_options(options):
  for i, option in enumerate(options):
     print(option, " [", i+1, "]", sep="")
+
+def save_results(quiz_name, score):
+  with open("results.txt", 'a', encoding='utf-8') as f:
+    f.write(f"{quiz_name}: {score}\n")
 
 while (True):
   print("\n")

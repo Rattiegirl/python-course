@@ -78,4 +78,5 @@ def convert_to_test(file_name, quiz_name, passing_score, target_file):
 # print(random.choice(["open", "single"]))
 input_file = sys.argv[1]
 output_file = sys.argv[2]
-convert_to_test(input_file, "Prog Mog", 4, output_file)
+quiz_name = sys.argv[3]
+convert_to_test(input_file, quiz_name, 4, output_file)

@@ -9,7 +9,7 @@ num = random.randint(1, 100)
 ```
 
 ```bush
-python transform.py input/answers.json created_quizzes/quiz-2.json
+python transform.py input/answers.json created_quizzes/quiz-2.json Prog_Mog_2
 ```
 
 ```bush
