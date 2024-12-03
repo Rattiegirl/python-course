@@ -8,10 +8,19 @@ import random
 num = random.randint(1, 100)
 ```
 
-```bush
+```bash
 python transform.py input/answers.json created_quizzes/quiz-2.json Prog_Mog_2
 ```
 
-```bush
+```bash
 python quiz.py created_quizzes/quiz-2.json
 ```
+
+```bash
+.\venv\Scripts\activate
+```
+
+```bash
+uvicorn main:app --reload
+```
+ 
