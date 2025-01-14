@@ -8,17 +8,20 @@ let quizData = null;
 let userAnswers = {};
 
 // Загрузка викторины с бэкенда
-axios
-  .get(`${apiUrl}/quiz`)
-  .then((response) => {
-    quizData = response.data;
-    renderQuiz(quizData);
-  })
-  .catch((error) => {
-    quizTitle.textContent = "Failed to load quiz.";
-    console.error("Error fetching quiz:", error);
-  });
 
+const retrieveQuiz = (quizId) => {
+  axios
+    .get(`${apiUrl}/quiz/${quizId}`)
+    .then((response) => {
+      quizData = response.data;
+      renderQuiz(quizData);
+    })
+    .catch((error) => {
+      quizTitle.textContent = "Failed to load quiz.";
+      console.error("Error fetching quiz:", error);
+    });
+
+}
 // Отображение викторины
 function renderQuiz(data) {
   quizTitle.textContent = data.name;
@@ -89,9 +92,13 @@ function renderResults(result) {
   quizTitle.textContent = "Quiz Results";
   quizContainer.innerHTML = `
     <p>You scored ${result.score} out of ${quizData.questions.length}.</p>
-    <p>${
-      result.passed ? "Congratulations, you passed!" : "Sorry, you failed."
+    <p>${result.passed ? "Congratulations, you passed!" : "Sorry, you failed."
     }</p>
   `;
   submitBtn.style.display = "none";
 }
+
+
+const quizSelector = document.querySelector("[name=quiz_chooser]")
+quizSelector.addEventListener("change", (event) => { retrieveQuiz(event.target.value) })
+console.log(quizSelector)

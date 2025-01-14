@@ -19,9 +19,11 @@ app.add_middleware(
 quiz_data = load_quiz("../created_quizzes/quiz-2.json")
 
 # Эндпоинт для получения вопросов
-@app.get("/quiz")
-def get_quiz():
+@app.get("/quiz/{quiz_id}")
+def get_quiz(quiz_id:str):
+    quiz_data = load_quiz("../created_quizzes/quiz-%s.json" %(quiz_id))
     return quiz_data
+
 
 @app.post("/submit")
 async def recieve_submission(user_answers: dict):
