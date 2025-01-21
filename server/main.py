@@ -25,15 +25,16 @@ def get_quiz(quiz_id:str):
     return quiz_data
 
 
-@app.post("/submit")
-async def recieve_submission(user_answers: dict):
+@app.post("/submit/{quiz_id}")
+async def recieve_submission(quiz_id: str, user_answers: dict):
+    quiz_data = load_quiz("../created_quizzes/quiz-%s.json" %(quiz_id))
     questions = quiz_data["questions"]
     score = 0
     for i, question in enumerate(questions):
         k = str(i)
         if user_answers.get(k) == question["answer"]: 
             score += 1 
-    save_results(quiz_data["name"], score)
+    await save_results(quiz_data["name"], score)
     # print (user_answers)
     return {
         "score": score,

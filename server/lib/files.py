@@ -26,6 +26,7 @@ def load_quiz(filename):
         return []
     
 async def save_results(quiz_name, score):
+  print(quiz_name, score)
   with open("results.txt", 'a', encoding='utf-8') as f:
     f.write(f"{quiz_name}: {score}\n")
 
