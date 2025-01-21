@@ -9,17 +9,25 @@ let userAnswers = {};
 
 // Загрузка викторины с бэкенда
 
-const retrieveQuiz = (quizId) => {
-  axios
-    .get(`${apiUrl}/quiz/${quizId}`)
-    .then((response) => {
-      quizData = response.data;
-      renderQuiz(quizData);
-    })
-    .catch((error) => {
-      quizTitle.textContent = "Failed to load quiz.";
-      console.error("Error fetching quiz:", error);
-    });
+const retrieveQuiz = async (quizId) => {
+  try {
+    const response = await axios.get(`${apiUrl}/quiz/${quizId}`)
+    renderQuiz(response.data);
+  }
+  catch(error){
+    quizTitle.textContent = "Failed to load quiz.";
+    console.error("Error fetching quiz:", error);
+  }
+  // axios
+  //   .get(`${apiUrl}/quiz/${quizId}`)
+  //   .then((response) => {
+  //     quizData = response.data;
+  //     renderQuiz(quizData);
+  //   })
+  //   .catch((error) => {
+  //     quizTitle.textContent = "Failed to load quiz.";
+  //     console.error("Error fetching quiz:", error);
+  //   });
 
 }
 // Отображение викторины
@@ -76,9 +84,10 @@ function renderQuiz(data) {
 }
 
 // Отправка ответов
-submitBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault()
   axios
-    .post(`${apiUrl}/submit`, userAnswers)
+    .post(`${apiUrl}/submit/${quizId}`, userAnswers)
     .then((response) => {
       renderResults(response.data);
     })
@@ -100,5 +109,10 @@ function renderResults(result) {
 
 
 const quizSelector = document.querySelector("[name=quiz_chooser]")
-quizSelector.addEventListener("change", (event) => { retrieveQuiz(event.target.value) })
+let quizId = 1
+retrieveQuiz(quizId)
+quizSelector.addEventListener("change", (event) => { 
+  quizId = event.target.value
+  retrieveQuiz(quizId) 
+})
 console.log(quizSelector)
