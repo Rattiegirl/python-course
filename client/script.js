@@ -12,6 +12,7 @@ let userAnswers = {};
 const retrieveQuiz = async (quizId) => {
   try {
     const response = await axios.get(`${apiUrl}/quiz/${quizId}`)
+    quizData = response.data;
     renderQuiz(response.data);
   }
   catch(error){
