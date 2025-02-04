@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from lib.files import load_quiz, save_results
+from lib.files import load_quiz, save_results, load_results
 
 app = FastAPI()
 
@@ -40,3 +40,9 @@ async def recieve_submission(quiz_id: str, user_answers: dict):
         "score": score,
         "passed": quiz_data["passing_score"] <= score
     }
+
+@app.get("/results")
+def get_results(): 
+    results = load_results()
+    return results
+    
