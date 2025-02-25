@@ -34,7 +34,7 @@ async def recieve_submission(quiz_id: str, user_answers: dict):
         k = str(i)
         if user_answers.get(k) == question["answer"]: 
             score += 1 
-    # await save_results(quiz_data["name"], score)
+    await save_results(quiz_data["name"], score)
     # print (user_answers)
     return {
         "score": score,

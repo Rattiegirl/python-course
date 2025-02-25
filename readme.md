@@ -1,3 +1,9 @@
+## ToDo
+results format:
+- numbers of incorrect answers
+- date of submission
+- passed/not passed
+
 7/9/2024 step 2.3
 7/23/2024 step 2.4
 
@@ -21,6 +27,13 @@ Activates venv
 ```
 Start server with hot reload 
 ```bash
+cd server
 uvicorn main:app --reload
 ```
+To start client
+```bash
+cd next
+npm run dev
+```
+
  
