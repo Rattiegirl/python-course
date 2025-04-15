@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from lib.files import load_quiz, save_results, load_results
+import datetime
 
 app = FastAPI()
 
@@ -30,15 +31,23 @@ async def recieve_submission(quiz_id: str, user_answers: dict):
     quiz_data = load_quiz("../created_quizzes/quiz-%s.json" %(quiz_id))
     questions = quiz_data["questions"]
     score = 0
+    falseNum = []
     for i, question in enumerate(questions):
         k = str(i)
         if user_answers.get(k) == question["answer"]: 
             score += 1 
-    await save_results(quiz_data["name"], score)
+        else: 
+            falseNum += "${i}"
+            print(i)
+    await save_results(quiz_data["name"], score, quiz_data["passing_score"] <= score)
     # print (user_answers)
+    today = datetime.date.today()
     return {
         "score": score,
-        "passed": quiz_data["passing_score"] <= score
+        "passed": quiz_data["passing_score"] <= score,
+        "date": ("Current date:", today),
+        "incorrect": len(quiz_data["questions"]) - score,
+        "false": falseNum
     }
 
 @app.get("/results")

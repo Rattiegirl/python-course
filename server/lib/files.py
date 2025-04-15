@@ -1,4 +1,5 @@
 import json
+import datetime
 
 def load_questions_array(filename):
     """Загружает вопросы из файла JSON."""
@@ -37,8 +38,9 @@ def load_results():
         print(f"Ошибка декодирования JSON в файле results.txt.")
         return []
     
-async def save_results(quiz_name, score):
-  print(quiz_name, score)
-  with open("results.txt", 'a', encoding='utf-8') as f:
-    f.write(f"{quiz_name}: {score}\n")
+async def save_results(quiz_name, score, passed, falseNum):
+    print(quiz_name, score)
+    today = datetime.date.today()
+    with open("results.txt", 'a', encoding='utf-8') as f:
+        f.write(f"{quiz_name},{score},{passed},{falseNum},{today.strftime("%m-%d-%Y")}\n")
 

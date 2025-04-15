@@ -1,7 +1,7 @@
 ## ToDo
 results format:
 - numbers of incorrect answers
-- date of submission
+- [x] date of submission
 - passed/not passed
 
 7/9/2024 step 2.3
